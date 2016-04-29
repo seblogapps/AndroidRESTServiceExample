@@ -62,7 +62,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            mUserLoginRegisterTask = new UserLoginRegisterTask(email, password, view.getId() = R.id.email_sign_in_button);
+            mUserLoginRegisterTask = new UserLoginRegisterTask(LoginRegisterActivity.this, email, password, view.getId() == R.id.email_sign_in_button);
             mUserLoginRegisterTask.execute((Void) null);
         }
 

@@ -10,8 +10,51 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.seblogapps.stognacci.restserviceexample.LoginRegisterActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:hint="Enter email address"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:ems="10"
+        android:hint="Enter password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/email_sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_below="@id/password"
+        android:text="Sign in"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_progress"
+        android:layout_below="@+id/email_sign_in_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:progress="100"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_form"
+        android:layout_below="@+id/login_progress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:progress="50"/>
+
+
 </RelativeLayout>

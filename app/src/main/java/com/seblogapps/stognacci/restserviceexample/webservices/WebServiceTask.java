@@ -13,7 +13,7 @@ import org.json.JSONObject;
 /**
  * Created by stognacci on 29/04/2016.
  */
-public class WebServiceTask extends AsyncTask<Void, Void, Boolean> {
+public abstract class WebServiceTask extends AsyncTask<Void, Void, Boolean> {
 
     private static final String LOG_TAG = WebServiceUtils.class.getSimpleName();
 
@@ -21,7 +21,7 @@ public class WebServiceTask extends AsyncTask<Void, Void, Boolean> {
 
     public abstract boolean performRequest();
 
-    public abstract void performSuccesfulOperation();
+    public abstract void performSuccessfulOperation();
 
     public abstract void hideProgress();
 
@@ -50,10 +50,10 @@ public class WebServiceTask extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean success) {
         hideProgress();
         if (success) {
-            performSuccesfulOperation();
+            performSuccessfulOperation();
         }
         if (mMessage != null && !mMessage.isEmpty()) {
-            Toast.makeText(mContext, mMessage Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mMessage, Toast.LENGTH_SHORT).show();
         }
     }
 
