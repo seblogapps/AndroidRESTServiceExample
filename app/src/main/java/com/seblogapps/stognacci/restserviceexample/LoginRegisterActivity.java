@@ -1,13 +1,15 @@
 package com.seblogapps.stognacci.restserviceexample;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.ContentValues;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 
+import com.seblogapps.stognacci.restserviceexample.webservices.WebServiceTask;
 import com.seblogapps.stognacci.restserviceexample.webservices.WebServiceUtils;
 
 public class LoginRegisterActivity extends AppCompatActivity {
@@ -62,7 +64,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            mUserLoginRegisterTask = new UserLoginRegisterTask(LoginRegisterActivity.this, email, password, view.getId() == R.id.email_sign_in_button);
+            mUserLoginRegisterTask = new UserLoginRegisterTask(email, password, view.getId() == R.id.email_sign_in_button);
             mUserLoginRegisterTask.execute((Void) null);
         }
 
@@ -79,5 +81,45 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private void showProgress(final boolean isShown) {
         findViewById(R.id.login_progress).setVisibility(isShown ? View.VISIBLE : View.GONE);
         findViewById(R.id.login_form).setVisibility(isShown ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Created by stognacci on 29/04/2016.
+     */
+    private class UserLoginRegisterTask extends WebServiceTask {
+        private final ContentValues mContentValues = new ContentValues();
+        private Boolean mIsLogin;
+
+        String mEmail;
+        String mPassword;
+
+        public UserLoginRegisterTask(String email, String password, Boolean isLogin) {
+            super(LoginRegisterActivity.this);
+            mContentValues.put(Constants.EMAIL, email);
+            mContentValues.put(Constants.PASSWORD, password);
+            this.mEmail = email;
+            this.mPassword = password;
+            this.mIsLogin = isLogin;
+        }
+
+        @Override
+        public void hideProgress() {
+
+        }
+
+        @Override
+        public void showProgress() {
+
+        }
+
+        @Override
+        public boolean performRequest() {
+            return false;
+        }
+
+        @Override
+        public void performSuccessfulOperation() {
+
+        }
     }
 }
