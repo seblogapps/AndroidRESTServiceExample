@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">RESTServiceExample</string>
-    <string name="prompt_email">Email></string>
-    <string name="prompt_password">Password></string>
+    <string name="app_name">RESTService</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_phoneNumber">Phone Number</string>
     <string name="prompt_note">Note</string>

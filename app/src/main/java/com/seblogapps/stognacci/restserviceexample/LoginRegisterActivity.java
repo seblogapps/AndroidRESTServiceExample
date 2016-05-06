@@ -37,7 +37,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
     }
 
-    public void attempLoginRegister(View view) {
+    public void attemptLoginRegister(View view) {
         boolean cancel = false;
         View focusView = null;
 
