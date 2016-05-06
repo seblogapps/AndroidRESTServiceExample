@@ -159,7 +159,7 @@ public class WebServiceUtils {
 
     private static void addBasicAuthentication(HttpURLConnection urlConnection) {
         final String basicAuth = "Basic " + Base64.encodeToString((Constants.APP_KEY +
-        ":" + Constants.APP_SECRET).getBytes(), Base64.NO_WRAP);
+                ":" + Constants.APP_SECRET).getBytes(), Base64.NO_WRAP);
         urlConnection.setRequestProperty(Constants.AUTHORIZATION, basicAuth);
     }
 
