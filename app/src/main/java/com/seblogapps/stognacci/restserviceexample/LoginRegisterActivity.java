@@ -124,7 +124,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     user.setPassword(mContentValues.getAsString(Constants.PASSWORD));
                     RESTServiceApplication.getInstance().setUser(user);
                     RESTServiceApplication.getInstance().setAccessToken(
-                            jsonObject.optJSONObject(Constants.ACCESS).optString(Constants.ACCESS_TOKEN);
+                            jsonObject.optJSONObject(Constants.ACCESS).optString(Constants.ACCESS_TOKEN));
                     return true;
                 } else {
                     mIsLogin = true;
