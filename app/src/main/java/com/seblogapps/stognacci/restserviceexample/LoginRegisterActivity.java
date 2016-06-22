@@ -3,12 +3,12 @@ package com.seblogapps.stognacci.restserviceexample;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
 
 import com.seblogapps.stognacci.restserviceexample.data.User;
 import com.seblogapps.stognacci.restserviceexample.webservices.WebServiceTask;
@@ -21,20 +21,20 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = LoginRegisterActivity.class.getSimpleName();
 
     private UserLoginRegisterTask mUserLoginRegisterTask = null;
-    private EditText mEmailView;
-    private EditText mPasswordView;
+    private TextInputEditText mEmailView;
+    private TextInputEditText mPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
-
+        initViews();
         Log.d(LOG_TAG, "hasInternetConnection: " + WebServiceUtils.hasInternetConnection(LoginRegisterActivity.this));
     }
 
     private void initViews() {
-        mEmailView = (EditText) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView = (TextInputEditText) findViewById(R.id.email);
+        mPasswordView = (TextInputEditText) findViewById(R.id.password);
     }
 
     public void attemptLoginRegister(View view) {
@@ -51,11 +51,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_password_length));
-            focusView = mPasswordView;
-            cancel = true;
-        }
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -63,6 +58,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
         } else if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
+            cancel = true;
+        } else if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_password_length));
+            focusView = mPasswordView;
             cancel = true;
         }
         if (cancel) {
@@ -84,7 +83,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     private void showProgress(final boolean isShown) {
         findViewById(R.id.login_progress).setVisibility(isShown ? View.VISIBLE : View.GONE);
-        findViewById(R.id.login_form).setVisibility(isShown ? View.VISIBLE : View.GONE);
+        findViewById(R.id.login_form).setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
     private class UserLoginRegisterTask extends WebServiceTask {

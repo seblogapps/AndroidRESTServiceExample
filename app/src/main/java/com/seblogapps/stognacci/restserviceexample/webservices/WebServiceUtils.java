@@ -119,7 +119,9 @@ public class WebServiceUtils {
             Log.d(LOG_TAG, e.getLocalizedMessage());
             e.printStackTrace();
         } finally {
-            urlConnection.disconnect();
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
 
 

@@ -29,7 +29,7 @@ public abstract class WebServiceTask extends AsyncTask<Void, Void, Boolean> {
     private Context mContext;
 
     public WebServiceTask(Context context) {
-        mContext = context;
+        this.mContext = context;
     }
 
     @Override
